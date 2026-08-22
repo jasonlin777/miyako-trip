@@ -3,30 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#00A896">
 <title>宮古島環島紀行｜2026.10.7-10.11</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --sea-deep:#0A3D4A;
-  --sea:#0C6478;
-  --sea-bright:#12AFC4;
-  --sand:#FBF6EA;
-  --sand-card:#FFFFFF;
-  --coral:#FF6F59;
-  --sun:#FFB238;
-  --ink:#15323D;
-  --ink-soft:#5C7A83;
-  --line:#E4DFD0;
-  --radius:18px;
+  color-scheme:light;
+  --ocean-1:#00A8E8;
+  --ocean-2:#00A896;
+  --ocean-3:#028090;
+  --ocean-deep:#023E4D;
+  --sand:#F6F2E9;
+  --glass:rgba(255,255,255,.66);
+  --glass-strong:rgba(255,255,255,.86);
+  --glass-border:rgba(255,255,255,.55);
+  --gold:#F4A261;
+  --coral:#E76F51;
+  --text:#1D2A44;
+  --text-soft:rgba(29,42,68,.6);
+  --line:rgba(29,42,68,.10);
+  --radius:22px;
+  --radius-sm:14px;
+  --shadow:0 10px 30px rgba(2,62,77,.08);
+  --shadow-lift:0 18px 40px rgba(2,62,77,.16);
   --safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;}
+html{height:100%;background:var(--sand);}
 body{
-  background:var(--sand);
-  color:var(--ink);
-  font-family:'Noto Sans TC',sans-serif;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 12% 6%, rgba(0,168,232,.14), transparent 42%),
+    radial-gradient(circle at 92% 18%, rgba(244,162,97,.14), transparent 38%),
+    radial-gradient(circle at 20% 90%, rgba(0,168,150,.10), transparent 40%),
+    var(--sand);
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
+  letter-spacing:.02em;
+  line-height:1.7;
   display:flex;
   justify-content:center;
   min-height:100%;
@@ -36,7 +53,6 @@ body{
   width:100%;
   max-width:480px;
   min-height:100vh;
-  background:var(--sand);
   position:relative;
   display:flex;
   flex-direction:column;
@@ -44,305 +60,372 @@ body{
 
 /* ===== Header ===== */
 header{
-  background:linear-gradient(160deg,var(--sea-deep) 0%,var(--sea) 100%);
+  background:linear-gradient(165deg,var(--ocean-1) 0%,var(--ocean-2) 55%,var(--ocean-3) 100%);
   color:#fff;
-  padding:22px 20px 18px;
+  padding:26px 20px 0;
   position:sticky;
   top:0;
   z-index:20;
-  box-shadow:0 6px 18px rgba(10,61,74,.18);
+  box-shadow:0 8px 26px rgba(2,62,77,.22);
 }
+header::before{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 78% 10%, rgba(255,255,255,.30), transparent 34%),
+    radial-gradient(circle at 15% 60%, rgba(255,255,255,.14), transparent 40%),
+    radial-gradient(circle at 60% 85%, rgba(255,255,255,.10), transparent 45%);
+  pointer-events:none;
+  animation:shimmer 9s ease-in-out infinite alternate;
+}
+@keyframes shimmer{
+  from{opacity:.7;transform:translateY(0);}
+  to{opacity:1;transform:translateY(4px);}
+}
+header > *{position:relative;z-index:1;padding-left:0;padding-right:0;}
+.headerpad{padding:0 0 18px;}
 .eyebrow{
   font-family:'Roboto Mono',monospace;
   font-size:11px;
-  letter-spacing:.14em;
+  letter-spacing:.16em;
   text-transform:uppercase;
-  color:var(--sun);
+  color:#FFE4BE;
   display:flex;
   align-items:center;
   gap:8px;
 }
-.eyebrow::before{content:"";width:14px;height:1px;background:var(--sun);display:inline-block;}
+.eyebrow::before{content:"☀";font-size:12px;}
 h1{
-  font-family:'Noto Serif TC',serif;
-  font-weight:900;
-  font-size:26px;
-  line-height:1.25;
-  margin-top:6px;
-  letter-spacing:.02em;
+  font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
+  font-weight:800;
+  font-size:27px;
+  line-height:1.3;
+  margin-top:8px;
+  letter-spacing:.01em;
 }
 .subline{
   font-size:12.5px;
-  color:rgba(255,255,255,.72);
-  margin-top:6px;
+  color:rgba(255,255,255,.82);
+  margin-top:8px;
   font-family:'Roboto Mono',monospace;
+  letter-spacing:.03em;
 }
 
 /* route map signature element */
-.routewrap{margin-top:16px;}
+.routewrap{margin-top:18px;}
 .routesvg{width:100%;height:auto;display:block;}
-.routesvg .path{fill:none;stroke:rgba(255,255,255,.28);stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round;}
+.routesvg .path{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round;}
 .routesvg .node{cursor:pointer;}
-.routesvg .node circle{fill:var(--sea-deep);stroke:rgba(255,255,255,.5);stroke-width:1.5;transition:all .25s ease;}
-.routesvg .node text{fill:rgba(255,255,255,.65);font-family:'Roboto Mono',monospace;font-size:9px;text-anchor:middle;}
-.routesvg .node.active circle{fill:var(--coral);stroke:#fff;r:11;}
+.routesvg .node circle{fill:rgba(255,255,255,.18);stroke:rgba(255,255,255,.7);stroke-width:1.5;transition:all .3s ease;}
+.routesvg .node text{fill:rgba(255,255,255,.75);font-family:'Roboto Mono',monospace;font-size:9px;text-anchor:middle;}
+.routesvg .node.active circle{fill:var(--gold);stroke:#fff;r:11;}
 .routesvg .node.active text{fill:#fff;font-weight:700;}
-.routesvg .node:not(.active):hover circle{fill:var(--sea-bright);}
+.routesvg .node:not(.active):hover circle{fill:rgba(255,255,255,.34);}
+
+/* wave divider */
+.wavedivider{display:block;width:auto;height:30px;margin:14px -20px 0;position:relative;z-index:1;}
+.wavedivider path{fill:var(--sand);}
 
 /* ===== Day pill selector ===== */
 .daypills{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  padding:14px 20px 4px;
+  padding:14px 20px 16px;
+  margin:0 -20px;
   scrollbar-width:none;
+  background:var(--sand);
 }
 .daypills::-webkit-scrollbar{display:none;}
 .pill{
   flex:0 0 auto;
   font-family:'Roboto Mono',monospace;
   font-size:12px;
-  font-weight:500;
-  padding:8px 14px;
+  font-weight:600;
+  padding:9px 15px;
   border-radius:999px;
   border:1px solid var(--line);
-  background:#fff;
-  color:var(--ink-soft);
+  background:var(--glass-strong);
+  backdrop-filter:blur(8px);
+  color:var(--text-soft);
   white-space:nowrap;
   cursor:pointer;
-  transition:all .2s ease;
+  transition:all .3s ease;
+  box-shadow:0 2px 8px rgba(2,62,77,.05);
 }
+.pill:hover{transform:translateY(-3px);box-shadow:var(--shadow);}
 .pill.active{
-  background:var(--sea-deep);
-  border-color:var(--sea-deep);
+  background:linear-gradient(135deg,var(--ocean-2),var(--ocean-3));
+  border-color:transparent;
   color:#fff;
+  box-shadow:0 8px 20px rgba(2,128,144,.32);
 }
 
 /* ===== Main content ===== */
 main{
   flex:1;
-  padding:16px 20px calc(96px + var(--safe-bottom));
+  padding:18px 20px calc(100px + var(--safe-bottom));
 }
-.view{display:none;animation:fade .25s ease;}
+.view{display:none;animation:fade .3s ease;}
 .view.active{display:block;}
-@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
 .daytitle{
-  font-family:'Noto Serif TC',serif;
-  font-weight:700;
+  font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
+  font-weight:800;
   font-size:19px;
   margin:4px 0 2px;
+  color:var(--ocean-3);
 }
 .daydate{
   font-family:'Roboto Mono',monospace;
   font-size:12px;
-  color:var(--ink-soft);
-  margin-bottom:16px;
+  color:var(--text-soft);
+  margin-bottom:18px;
+  letter-spacing:.05em;
 }
 
 /* timeline */
-.timeline{position:relative;padding-left:22px;}
+.timeline{position:relative;padding-left:24px;}
 .timeline::before{
   content:"";
   position:absolute;
-  left:5px;top:6px;bottom:6px;
-  width:1.5px;
-  background:var(--line);
+  left:6px;top:6px;bottom:6px;
+  width:2px;
+  background:linear-gradient(180deg,var(--ocean-1),var(--gold));
+  opacity:.35;
+  border-radius:2px;
 }
-.item{position:relative;padding-bottom:18px;}
+.item{position:relative;padding-bottom:20px;}
 .item:last-child{padding-bottom:0;}
 .dot{
-  position:absolute;left:-22px;top:4px;
-  width:11px;height:11px;border-radius:50%;
-  background:var(--sea-bright);
-  border:2px solid var(--sand);
-  box-shadow:0 0 0 1.5px var(--sea-bright);
+  position:absolute;left:-24px;top:6px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--ocean-2);
+  border:2.5px solid var(--sand);
+  box-shadow:0 0 0 1.5px var(--ocean-2);
 }
 .item.meal .dot{background:var(--coral);box-shadow:0 0 0 1.5px var(--coral);}
-.item.flight .dot{background:var(--sun);box-shadow:0 0 0 1.5px var(--sun);}
+.item.flight .dot{background:var(--gold);box-shadow:0 0 0 1.5px var(--gold);}
 .card{
-  background:var(--sand-card);
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
   border-radius:var(--radius);
-  padding:14px 16px;
-  border:1px solid var(--line);
+  padding:16px 18px;
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow);
+  transition:transform .3s ease,box-shadow .3s ease;
 }
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift);}
 .time{
   font-family:'Roboto Mono',monospace;
   font-size:11.5px;
-  color:var(--sea);
+  color:var(--ocean-3);
   font-weight:700;
-  letter-spacing:.03em;
+  letter-spacing:.04em;
 }
+.icon-badge{
+  width:28px;height:28px;flex:0 0 auto;
+  border-radius:50%;
+  background:linear-gradient(160deg,var(--ocean-2),var(--ocean-3));
+  display:flex;align-items:center;justify-content:center;
+  margin-right:2px;
+  box-shadow:0 4px 10px rgba(2,128,144,.28);
+}
+.icon-badge svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:1.8;}
+.item.meal .icon-badge{background:linear-gradient(160deg,var(--coral),var(--gold));box-shadow:0 4px 10px rgba(231,111,81,.3);}
+.item.flight .icon-badge{background:linear-gradient(160deg,var(--gold),#ffd08a);box-shadow:0 4px 10px rgba(244,162,97,.3);}
+.item.flight .icon-badge svg{stroke:var(--ocean-deep);}
 .place{
   font-size:15.5px;
   font-weight:700;
-  margin-top:3px;
+  margin-top:4px;
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:7px;
   flex-wrap:wrap;
+  letter-spacing:.01em;
 }
 .badge{
   font-family:'Roboto Mono',monospace;
   font-size:10px;
   font-weight:700;
-  padding:2px 7px;
+  padding:3px 9px;
   border-radius:999px;
-  background:rgba(255,111,89,.12);
+  background:rgba(231,111,81,.14);
   color:var(--coral);
   white-space:nowrap;
+  letter-spacing:.03em;
 }
 .note{
   font-size:13px;
-  color:var(--ink-soft);
-  line-height:1.55;
-  margin-top:5px;
+  color:var(--text-soft);
+  line-height:1.7;
+  margin-top:6px;
 }
 .warn{
   font-size:12px;
-  color:#B5590A;
-  background:rgba(255,178,56,.15);
-  border-radius:10px;
-  padding:6px 10px;
-  margin-top:8px;
-  line-height:1.5;
+  color:#9a5a10;
+  background:rgba(244,162,97,.18);
+  border-radius:var(--radius-sm);
+  padding:8px 12px;
+  margin-top:9px;
+  line-height:1.6;
 }
 .maprow{
   display:flex;
   gap:8px;
-  margin-top:10px;
+  margin-top:11px;
   flex-wrap:wrap;
 }
 .mapbtn{
-  font-family:'Noto Sans TC',sans-serif;
+  font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
   font-size:12.5px;
   font-weight:700;
-  color:var(--sea-deep);
-  background:rgba(12,100,120,.08);
-  border:1px solid rgba(12,100,120,.18);
-  border-radius:10px;
-  padding:7px 12px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--ocean-2),var(--ocean-3));
+  border:none;
+  border-radius:var(--radius-sm);
+  padding:8px 14px;
   text-decoration:none;
   display:inline-flex;
   align-items:center;
   gap:5px;
-  transition:background .15s ease;
+  transition:transform .25s ease,box-shadow .25s ease;
+  box-shadow:0 6px 14px rgba(2,128,144,.24);
 }
-.mapbtn:active{background:rgba(12,100,120,.18);}
+.mapbtn:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(2,128,144,.32);}
+.mapbtn:active{transform:translateY(-1px);}
 .mapbtn svg{width:13px;height:13px;flex:0 0 auto;}
 
 /* candidate list */
-.candbox{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+.candbox{margin-top:12px;border-top:1px dashed var(--line);padding-top:12px;}
 .candlabel{
   font-family:'Roboto Mono',monospace;
   font-size:10.5px;
-  color:var(--ink-soft);
-  margin-bottom:6px;
+  color:var(--text-soft);
+  margin-bottom:8px;
+  letter-spacing:.05em;
 }
 .cand{
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  padding:6px 0;
-  border-bottom:1px solid var(--line);
-  gap:10px;
+  padding:10px 12px;
+  border-radius:var(--radius-sm);
+  margin-bottom:6px;
+  background:rgba(255,255,255,.45);
+  transition:background .25s ease,transform .25s ease;
 }
-.cand:last-child{border-bottom:none;}
-.candname{font-size:13px;font-weight:700;}
-.candmeta{font-size:11.5px;color:var(--ink-soft);text-align:right;flex:0 0 auto;}
+.cand:hover{background:rgba(255,255,255,.7);transform:translateY(-2px);}
+.cand:last-child{margin-bottom:0;}
+.candname{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:6px;}
+.candmeta{font-size:12px;color:var(--text-soft);margin-top:3px;line-height:1.6;}
+.cand .maprow{margin-top:8px;}
 
 /* section title generic */
 .sectitle{
-  font-family:'Noto Serif TC',serif;
-  font-weight:700;
+  font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
+  font-weight:800;
   font-size:18px;
-  margin:22px 0 10px;
+  margin:24px 0 12px;
+  color:var(--ocean-3);
 }
 .sectitle:first-child{margin-top:4px;}
 
 /* generic info card */
 .infocard{
-  background:var(--sand-card);
-  border:1px solid var(--line);
+  background:var(--glass);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid var(--glass-border);
   border-radius:var(--radius);
-  padding:16px;
-  margin-bottom:12px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+  transition:transform .3s ease,box-shadow .3s ease;
 }
+.infocard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);}
 .infocard h3{
   font-size:15px;
-  font-weight:700;
-  margin-bottom:8px;
+  font-weight:800;
+  margin-bottom:10px;
   display:flex;
   align-items:center;
   gap:6px;
+  color:var(--ocean-3);
 }
-.kv{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:13.5px;border-bottom:1px solid #F0ECE0;}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:13.5px;border-bottom:1px solid rgba(29,42,68,.08);}
 .kv:last-child{border-bottom:none;}
-.kv .k{color:var(--ink-soft);flex:0 0 auto;}
+.kv .k{color:var(--text-soft);flex:0 0 auto;}
 .kv .v{font-weight:600;text-align:right;}
 .flightcard{
-  background:linear-gradient(135deg,var(--sea-deep),var(--sea));
+  background:linear-gradient(135deg,var(--ocean-2),var(--ocean-3));
   color:#fff;
   border-radius:var(--radius);
-  padding:16px;
-  margin-bottom:12px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 14px 28px rgba(2,128,144,.24);
+  transition:transform .3s ease;
 }
-.flightcard .flabel{font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.1em;color:var(--sun);text-transform:uppercase;}
-.flightrow{display:flex;align-items:center;justify-content:space-between;margin-top:10px;}
+.flightcard:hover{transform:translateY(-3px);}
+.flightcard .flabel{font-family:'Roboto Mono',monospace;font-size:10.5px;letter-spacing:.12em;color:#FFE4BE;text-transform:uppercase;}
+.flightrow{display:flex;align-items:center;justify-content:space-between;margin-top:12px;}
 .fpoint{text-align:center;}
 .fcode{font-family:'Roboto Mono',monospace;font-size:22px;font-weight:700;}
-.ftime{font-family:'Roboto Mono',monospace;font-size:13px;color:rgba(255,255,255,.8);margin-top:2px;}
+.ftime{font-family:'Roboto Mono',monospace;font-size:13px;color:rgba(255,255,255,.85);margin-top:2px;}
 .fline{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 10px;}
-.fline .lbl{font-size:10.5px;color:rgba(255,255,255,.65);margin-bottom:4px;}
-.fline .bar{width:100%;height:1px;background:rgba(255,255,255,.35);position:relative;}
+.fline .lbl{font-size:10.5px;color:rgba(255,255,255,.7);margin-bottom:4px;}
+.fline .bar{width:100%;height:1px;background:rgba(255,255,255,.4);position:relative;}
 .fline .bar::after{content:"✈";position:absolute;right:0;top:-8px;font-size:12px;}
 
 /* packing checklist */
-.checkgroup{margin-bottom:16px;}
-.checkgroup h4{font-size:13.5px;font-weight:700;color:var(--sea-deep);margin-bottom:8px;}
+.checkgroup{margin-bottom:18px;}
+.checkgroup h4{font-size:13.5px;font-weight:800;color:var(--ocean-3);margin-bottom:9px;}
 .checkitem{
   display:flex;
   align-items:center;
-  gap:10px;
-  padding:9px 0;
-  border-bottom:1px solid #F0ECE0;
+  gap:11px;
+  padding:10px 2px;
+  border-bottom:1px solid rgba(29,42,68,.08);
   font-size:13.5px;
   cursor:pointer;
   user-select:none;
+  transition:transform .2s ease;
 }
+.checkitem:hover{transform:translateX(2px);}
 .checkitem:last-child{border-bottom:none;}
 .box{
-  width:19px;height:19px;flex:0 0 auto;
-  border-radius:6px;
+  width:20px;height:20px;flex:0 0 auto;
+  border-radius:7px;
   border:1.5px solid var(--line);
+  background:rgba(255,255,255,.5);
   display:flex;align-items:center;justify-content:center;
-  transition:all .15s ease;
+  transition:all .2s ease;
 }
-.box svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:all .15s ease;}
-.checkitem.done .box{background:var(--sea);border-color:var(--sea);}
+.box svg{width:12px;height:12px;opacity:0;transform:scale(.6);transition:all .2s ease;}
+.checkitem.done .box{background:linear-gradient(135deg,var(--ocean-2),var(--ocean-3));border-color:transparent;}
 .checkitem.done .box svg{opacity:1;transform:scale(1);}
-.checkitem.done span.label{color:var(--ink-soft);text-decoration:line-through;}
+.checkitem.done span.label{color:var(--text-soft);text-decoration:line-through;}
 
 /* budget table */
 .budgetrow{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:10px 0;
-  border-bottom:1px solid #F0ECE0;
+  padding:11px 0;
+  border-bottom:1px solid rgba(29,42,68,.08);
 }
 .budgetrow:last-child{border-bottom:none;}
 .budgetrow .blab{font-size:13.5px;font-weight:600;}
-.budgetrow .bday{font-size:11px;color:var(--ink-soft);font-family:'Roboto Mono',monospace;}
-.budgetrow .bval{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--sea-deep);font-size:14px;}
+.budgetrow .bday{font-size:11px;color:var(--text-soft);font-family:'Roboto Mono',monospace;}
+.budgetrow .bval{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--ocean-3);font-size:14px;}
 .budgettotal{
-  margin-top:6px;
-  padding-top:14px;
-  border-top:2px solid var(--sea-deep);
+  margin-top:8px;
+  padding-top:16px;
+  border-top:2px solid var(--ocean-2);
   display:flex;justify-content:space-between;align-items:baseline;
 }
-.budgettotal .blab{font-family:'Noto Serif TC',serif;font-weight:700;font-size:16px;}
-.budgettotal .bval{font-family:'Roboto Mono',monospace;font-weight:900;font-size:22px;color:var(--coral);}
+.budgettotal .blab{font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;font-weight:800;font-size:16px;}
+.budgettotal .bval{font-family:'Roboto Mono',monospace;font-weight:900;font-size:23px;color:var(--coral);}
 
 /* ===== Bottom nav ===== */
 nav.bottomnav{
@@ -351,35 +434,41 @@ nav.bottomnav{
   transform:translateX(-50%);
   width:100%;
   max-width:480px;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(10px);
-  border-top:1px solid var(--line);
+  background:var(--glass-strong);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-top:1px solid var(--glass-border);
+  border-radius:24px 24px 0 0;
   display:flex;
-  padding:8px 6px calc(8px + var(--safe-bottom));
+  padding:10px 6px calc(10px + var(--safe-bottom));
   z-index:30;
+  box-shadow:0 -8px 26px rgba(2,62,77,.10);
 }
 .navbtn{
   flex:1;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:3px;
+  gap:4px;
   background:none;
   border:none;
-  padding:6px 2px;
-  color:var(--ink-soft);
-  font-family:'Noto Sans TC',sans-serif;
+  padding:7px 2px;
+  color:var(--text-soft);
+  font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
   font-size:10.5px;
+  font-weight:600;
   cursor:pointer;
-  border-radius:12px;
-  transition:color .15s ease;
+  border-radius:14px;
+  transition:all .25s ease;
 }
-.navbtn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;}
-.navbtn.active{color:var(--coral);}
-.navbtn.active svg{stroke:var(--coral);}
+.navbtn svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;transition:transform .25s ease;}
+.navbtn:hover{transform:translateY(-3px);}
+.navbtn.active{color:var(--coral);background:rgba(231,111,81,.10);}
+.navbtn.active svg{stroke:var(--coral);transform:translateY(-1px);}
 
-::selection{background:var(--sun);color:var(--sea-deep);}
+::selection{background:var(--gold);color:var(--ocean-deep);}
 </style>
+
 </head>
 <body>
 <div id="app">
@@ -393,6 +482,7 @@ nav.bottomnav{
         <path class="path" d="M30,55 C70,15 120,15 150,45 C175,70 210,70 230,45 C255,15 300,15 330,45 C355,68 390,60 410,35"/>
       </svg>
     </div>
+    <svg class="wavedivider" viewBox="0 0 480 30" preserveAspectRatio="none"><path d="M0,14 C80,28 160,2 240,14 C320,26 400,2 480,16 L480,30 L0,30 Z"/></svg>
     <div class="daypills" id="dayPills"></div>
   </header>
 
@@ -421,8 +511,35 @@ const ICONS = {
   bag:'<svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
   coin:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.4 1.2-2 2.5-2s2.5.7 2.5 2-1 1.7-2.5 2.3-2.5 1-2.5 2.4 1.2 2 2.5 2 2.5-.6 2.5-2"/></svg>',
   pin:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>',
-  check:'<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>'
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M4 12l6 6L20 6"/></svg>',
+  plane:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M2 12.5l19-9-7 19-3-7.5-7.5-2.5z"/></svg>',
+  wave:'<svg viewBox="0 0 24 24"><path d="M2 16.5c1.5-1.5 3-1.5 4.5 0s3 1.5 4.5 0 3-1.5 4.5 0 3 1.5 4.5 0"/><path d="M2 11.5c1.5-1.5 3-1.5 4.5 0s3 1.5 4.5 0 3-1.5 4.5 0 3 1.5 4.5 0"/></svg>',
+  cup:'<svg viewBox="0 0 24 24"><path d="M4 8h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"/><path d="M17 9.5h1.2a2.3 2.3 0 0 1 0 4.6H17"/><path d="M8 3c0 1-1 1-1 2M12 3c0 1-1 1-1 2"/></svg>',
+  bridge:'<svg viewBox="0 0 24 24"><path d="M2 16c2.5-4.5 5-6.5 10-6.5s7.5 2 10 6.5"/><path d="M2 16h20M6 16v-3.5M12 16v-6M18 16v-3.5"/></svg>',
+  camera:'<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.3-2.5h5.4L16 7"/><circle cx="12" cy="13.5" r="3.3"/></svg>',
+  flame:'<svg viewBox="0 0 24 24"><path d="M12 21c4 0 6-2.5 6-6 0-3-2-4.5-2.5-7-1 2-2 2.5-2 4.5 0 1-.5 1.5-1 1.5s-1.5-1-1-3c-2 1.5-3.5 3.5-3.5 6.5 0 2.5 1.5 4 4 4z"/></svg>',
+  torii:'<svg viewBox="0 0 24 24"><path d="M3 7.5h18M4.5 7.5l1-3M19.5 7.5l-1-3M7.5 7.5V19M16.5 7.5V19M3 11.5h18"/></svg>',
+  snorkel:'<svg viewBox="0 0 24 24"><path d="M4 15c1.5-1.5 3-1.5 4.5 0s3 1.5 4.5 0 3-1.5 4.5 0 3 1.5 4.5 0"/><path d="M12 3v9M9 8.5l3 3.5 3-3.5"/></svg>',
+  store:'<svg viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v10h16V9"/><path d="M9 19v-6h6v6"/></svg>',
+  sun:'<svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="3.6"/><path d="M2 19.5h20M12 3v3.5M5 8l1.8 1.8M19 8l-1.8 1.8"/></svg>'
 };
+
+/* 依店名/內容自動判斷分類圖示 */
+function iconFor(item){
+  const s=((item.place||"")+" "+(item.note||"")+(item.n||"")+(item.m||"")+(item.tag||"")).toLowerCase();
+  if(item.type==="flight"||s.includes("✈️")||s.includes("jx")||s.includes("機場")) return ICONS.plane;
+  if(s.includes("取車")||s.includes("還車")||s.includes("ots")||s.includes("加油")) return ICONS.car;
+  if(s.includes("入住")||s.includes("退房")||s.includes("apartment")||s.includes("住一")) return ICONS.bed;
+  if(s.includes("燒肉")||s.includes("焼肉")||s.includes("牛排")||s.includes("火神")||s.includes("琉宮苑")) return ICONS.flame;
+  if(s.includes("神社")||s.includes("torii")) return ICONS.torii;
+  if(s.includes("大橋")||s.includes("橋")) return ICONS.bridge;
+  if(s.includes("展望台")||s.includes("観景台")||s.includes("觀景台")||s.includes("牧山")||s.includes("龍宮城")||s.includes("東平安名岬")) return ICONS.camera;
+  if(s.includes("水上活動")||s.includes("浮潛")||s.includes("sup")||s.includes("八重干瀬")) return ICONS.snorkel;
+  if(s.includes("購物")||s.includes("唐吉訶德")||s.includes("aeon")||s.includes("永旺")||s.includes("大創")||s.includes("補給")) return ICONS.store;
+  if(s.includes("海灘")||s.includes("ビーチ")||s.includes("浜")||s.includes("17end")||s.includes("沙灘")) return ICONS.wave;
+  if(item.type==="meal") return ICONS.cup;
+  return ICONS.pin;
+}
 
 /* ============ DATA ============ */
 const DAYS = [
@@ -430,72 +547,100 @@ const DAYS = [
   id:1,label:"Day 1",date:"10/7（三）",title:"伊良部島・下地島初體驗",
   items:[
     {t:"07:20–09:40",type:"flight",place:"✈️ JX308 台中RMQ → 宮古島SHI",note:"星宇航空，抵達下地島機場"},
-    {t:"10:00",place:"下地島機場取車",note:"OTS 三菱 Delica D:5，8人座",tag:"租車"},
-    {t:"08:00–10:30",type:"meal",place:"HORIZON Café 早餐車",note:"伊良部佐和田1725-9・咖啡吐司輕食",map:"HORIZON Cafe Irabu Sawada Miyakojima",warn:"⚠️ 抵達+取車後最快10:00左右到，10:30打烊，時間很緊繃，抓不到就直接跳過"},
-    {t:"10:30–11:00",place:"17END",note:"機場旁絕景沙灘，退潮時透明沙洲＋飛機同框",map:"17END Miyakojima"},
-    {t:"11:15–11:45",place:"通り池",note:"兩座相連海蝕池，玄武傳說",map:"通り池 宮古島"},
-    {t:"12:00–13:00",type:"meal",place:"佐和田の浜 附近午餐",note:"奇石海灘，退潮景色特別",map:"佐和田の浜"},
-    {t:"13:30–14:00",place:"渡口の浜",note:"東洋第一美灘候選，適合拍照戲水",map:"渡口の浜"},
-    {t:"13:30–14:15",type:"meal",place:"Blue Turtle（順路選項）",note:"渡口の浜旁，海景咖啡餐酒館",map:"Blue Turtle Miyakojima Shimoji",badge:"順路備案"},
-    {t:"14:30–15:00",place:"伊良部大橋",note:"日本最長免費跨海大橋，沿途拍照",map:"伊良部大橋"},
-    {t:"16:00",type:"meal",place:"入住 住一宮古島店",note:"Apartment Hotel 11 Miyakojima",map:"Apartment Hotel 11 Miyakojima"},
-    {t:"18:30",type:"meal",place:"🔥 火神燒肉",note:"飯店旁走路可到，宮古牛炭火燒肉，週日公休",map:"宮古島焼肉 火神"}
+    {t:"10:00",place:"OTS取車＋加油",note:"三菱 Delica D:5，8人座",map:"OTS Rent a Car Shimojishima Airport",tag:"租車"},
+    {t:"10:15–11:00",type:"meal",place:"早餐／輕食候選（3選1）",note:"三間都在伊良部島国仲聚落一帶，彼此距離很近，依排隊狀況彈性選擇",cand:[
+      {n:"なかゆくい商店",m:"紅芋沙翁＋冰淇淋・9:30-12:00／13:30-16:00，常大排長龍",map:"なかゆくい商店 宮古島"},
+      {n:"空と燻製とcafeぷからす",m:"生菜水果三明治／優格碗・11:00-17:00",map:"空と燻製とcafeぷからす 宮古島"},
+      {n:"Kuninaka Shoten 國仲商店",m:"自家烘焙咖啡＋手作麵包・8:00-19:00，モーニング8:00-9:00",map:"Kuninaka Shoten 宮古島"}
+    ]},
+    {t:"11:15–11:45",place:"17END",note:"機場旁絕景沙灘，近距離看飛機起降＋透明沙洲・全天開放，免費無門票",map:"17END Miyakojima"},
+    {t:"12:00–13:00",type:"meal",place:"Blue Turtle",note:"海灘景觀餐廳・招牌海龜圖案冰沙很好拍・11:00–21:00",map:"Irabu-1352-16 Irabu, Miyakojima, Okinawa 906-0503 Japan"},
+    {t:"13:15–13:35",type:"meal",place:"さとうきびの店ぶーずやー",note:"黑糖奶茶／抹茶奶茶・12:00–18:00",map:"さとうきびの店ぶーずやー 宮古島"},
+    {t:"13:45–14:15",place:"牧山展望台 → 伊良部大橋",note:"高處遠眺伊良部大橋全景，沿途拍照・全天開放，免費無門票",map:"牧山展望台"},
+    {t:"14:30–14:45",place:"伊良部大橋宮古島口",note:"有地標可拍照・全天開放，免費無門票",map:"伊良部大橋宮古島口"},
+    {t:"15:00–15:30",type:"meal",place:"下午茶候選（2選1）",note:"兩間都順路，依排隊狀況彈性選擇",cand:[
+      {n:"Blue Seal 宮古島パイナガマ店",m:"平良久貝654-23，パームタウン內，伊良部大橋開過來約3分鐘・10:00–20:00",map:"ブルーシール宮古島パイナガマ店"},
+      {n:"空見茶屋",m:"雪鹽鯛魚燒等甜點，卡瑪瑪嶺公園展望台旁・11:00-18:00（L.O.17:30），週二公休",map:"Kugai-880-12 Hirara, Miyakojima, Okinawa 906-0015 Japan"}
+    ]},
+    {t:"15:45–16:15",place:"トゥリバー海浜公園",note:"10月日落約18:00，這時段還看不到夕陽，建議晚點再單獨繞回來看，或當作沿途休息點・全天開放，免費無門票",map:"トゥリバー海浜公園"},
+    {t:"16:30",type:"meal",place:"入住 住一宮古島店",note:"Apartment 11住一宮古島店・自助報到放行李",map:"Matsubara-558-3 Hirara, Miyakojima, Okinawa 906-0014 Japan"},
+    {t:"18:30",type:"meal",place:"🔥 火神燒肉",note:"飯店旁走路可到，宮古牛炭火燒肉・17:00–23:00，週日公休，人均約¥4,000-5,000",map:"宮古島焼肉 火神"},
+    {t:"飯後",place:"大創／AEON超市／永旺商場",note:"大創9:00–21:00，AEON、永旺皆24小時，補給日用品",tag:"補給"}
   ]
 },
 {
-  id:2,label:"Day 2",date:"10/8（四）",title:"北部池間島・市區巡禮",
+  id:2,label:"Day 2",date:"10/8（四）",title:"本島北部・市區巡禮",
   items:[
-    {t:"08:30",type:"meal",place:"早餐：LB CAFE",note:"平良西里1886-1・8:30–17:00（L.O.16:30）",map:"LB CAFE Miyakojima Hirara Nishizato"},
-    {t:"09:30–10:00",place:"池間大橋",note:"全長1,425公尺，漸層藍海景",map:"池間大橋"},
-    {t:"10:00–10:40",place:"池間島展望台",note:"可遠眺大神島",map:"池間島"},
-    {t:"11:00–11:40",place:"雪鹽製鹽所",note:"免費參觀＋伴手禮",map:"雪塩製造所 宮古島"},
-    {t:"12:00–13:00",type:"meal",place:"HARRY'S Shrimp Truck",note:"西平安名崎附近，蝦蝦飯專門",map:"HARRY'S Shrimp Truck Miyakojima"},
-    {t:"13:30–14:15",place:"宮古神社",note:"日本最南端神社",map:"宮古神社"},
-    {t:"14:30–16:30",place:"新市街購物",note:"Blue Seal冰淇淋、超市、藥妝",map:"サンエー宮古島シティ"},
-    {t:"18:30",type:"meal",place:"晚餐候選（3選1）",note:"詳見下方候選清單",cand:[
-      {n:"鰓呼吸",m:"海鮮居酒屋・平良西里300-3"},
-      {n:"天下一品",m:"連鎖豚骨拉麵・平良久貝1047-13"},
-      {n:"麺屋サマー太陽",m:"創作拉麵/宮古そば・平良西里845-1"}
-    ]}
+    {t:"08:00–08:45",type:"meal",place:"Cafe de M 早餐",note:"輕食早午餐・7:00–16:00",map:"Cafe de M Miyakojima"},
+    {t:"08:45–09:15",place:"宮古神社",note:"日本最南端神社・9:00–16:30，免費無門票",map:"宮古神社"},
+    {t:"09:15–10:00",place:"砂山ビーチ",note:"沙丘＋拱門海景，IG熱門打卡・全天開放，免費無門票",map:"砂山ビーチ 宮古島"},
+    {t:"10:00–10:45",place:"雪塩ミュージアム商品店",note:"免費參觀＋伴手禮・9:00–18:00",map:"雪塩ミュージアム 宮古島"},
+    {t:"11:00–11:30",place:"西平安名崎",note:"風力發電風車景觀岬，可遠眺池間大橋、伊良部島、大神島，就在HARRY'S停車場旁・全天開放，免費無門票",map:"西平安名崎"},
+    {t:"11:30–12:00",type:"meal",place:"HARRY'S Shrimp Truck",note:"蝦蝦飯餐車，當嘗鮮小食・11:00–17:00",map:"HARRY'S Shrimp Truck Miyakojima",badge:"嘗鮮小食"},
+    {t:"12:15–13:15",type:"meal",place:"午餐候選（2選1）",note:"都在池間大橋前後，順路又道地",cand:[
+      {n:"すむばり",m:"招牌章魚宮古そば，狩俣768-4，池間大橋入口前・10:00-19:00",map:"お食事処すむばり 宮古島"},
+      {n:"海美来",m:"招牌海螺（サザエ）宮古そば，池間大橋旁，邊吃邊看池間藍・約10:00-17:00，實際以現場為準",map:"海美来 宮古島"}
+    ]},
+    {t:"13:30–14:00",place:"幻の浜",note:"退潮限定夢幻沙洲・全天開放，免費無門票，退潮時段最美",map:"幻の浜 宮古島"},
+    {t:"14:00",place:"池間大橋狩俣駐車場",note:"順路停留拍照・免費無門票",map:"池間大橋狩俣駐車場"},
+    {t:"14:30–15:15",type:"meal",place:"Gelato Cafe Ninufa",note:"冰淇淋／咖啡／冰沙／輕食・10:00–17:00",map:"Gelato Cafe Ninufa"},
+    {t:"15:30–16:00",type:"meal",place:"Red Dragon 蝦蝦飯",note:"唐吉訶德前一站，順路・營業時間請以現場店家為準",map:"https://maps.app.goo.gl/Ka45ss4sexPsGEnr6",warn:"跟中午的HARRY'S同屬蝦蝦飯類型，若中午已吃過這站可考慮跳過或改喝飲料"},
+    {t:"16:15–17:45",place:"唐吉訶德 宮古島店",note:"購物・8:00–翌2:00，免費入場",map:"唐吉訶德 宮古島店"},
+    {t:"18:00",type:"meal",place:"晚餐候選（4選1）",note:"依當天狀況彈性選擇",cand:[
+      {n:"大將牛排館",m:"T骨牛排400g ¥6,300／菲力牛排M(100g)¥2,500・L(200g)¥3,700／組合牛排 ¥3,800／牛排海鮮燒 ¥2,800",map:"大將牛排館 宮古島"},
+      {n:"鰓呼吸",m:"海鮮居酒屋，平良西里300-3・17:00-24:00，全年無休，人均約¥3,000-4,000",map:"鰓呼吸 宮古島"},
+      {n:"割烹レストランまんぷく",m:"和食割烹，招牌海葡萄丼，平良市街地・營業時間請以現場店家為準",map:"割烹レストランまんぷく 宮古島"},
+      {n:"昔ながらのうちなぁ家 うまりずま",m:"沖繩家常料理＋三線Live，平良西里303・17:00起～Last（餐點L.O.23:00，飲料L.O.23:30）",map:"うまりずま 宮古島"}
+    ]},
+    {t:"—",place:"返回 Apartment 11住一宮古島店",note:""}
   ]
 },
 {
   id:3,label:"Day 3",date:"10/9（五）",title:"水上活動全日遊",
   items:[
-    {t:"07:30",type:"meal",place:"早餐：Kujira Diner",note:"平良下里220-1・快速外帶飯糰",map:"Kujira Diner Miyakojima"},
+    {t:"07:30",type:"meal",place:"早餐：Kujira Diner",note:"平良下里220-1・快速外帶飯糰・約7:30起，實際以現場為準",map:"Kujira Diner Miyakojima"},
     {t:"09:00",place:"集合出發",note:"依報名店家指定地點集合",tag:"水上活動"},
-    {t:"09:30–15:30",place:"🌊 八重干瀬 浮潛 ＋ SUP",note:"日本最大級珊瑚礁群，透明宮古藍海水；SUP另排時段體驗",tag:"已暫定"},
+    {t:"09:00–12:00",place:"🌊 八重干瀬 浮潛",note:"上午場・日本最大級珊瑚礁群，透明宮古藍海水・費用依報名業者方案而定",tag:"已暫定"},
+    {t:"13:00–15:30",place:"🏄 SUP",note:"下午場，店家與集合地點尚未確認・費用依報名業者方案而定",tag:"已暫定"},
     {t:"16:00",place:"返回住宿休息／沖澡",note:""},
-    {t:"16:30",type:"meal",place:"空見茶屋",note:"平良久貝880-12，卡瑪瑪嶺公園展望台旁，雪鹽鯛魚燒",map:"空見茶屋 宮古島"},
+    {t:"16:30",type:"meal",place:"點心候選（2選1）",note:"兩間都在卡瑪瑪嶺公園附近，彼此相鄰",cand:[
+      {n:"空見茶屋",m:"雪鹽鯛魚燒等甜點・11:00-18:00（L.O.17:30），週二公休",map:"Kugai-880-12 Hirara, Miyakojima, Okinawa 906-0015 Japan"},
+      {n:"ニンギン商店",m:"人氣手作甜甜圈＋咖啡，就在卡瑪瑪嶺公園獅子滑梯正對面・營業時間請以現場店家為準",map:"ニンギン商店 宮古島"}
+    ]},
     {t:"18:30",type:"meal",place:"晚餐候選（5選1）",note:"皆在平良市區同一區塊，不用額外開車",cand:[
-      {n:"一魚一会",m:"漁師居酒屋・平良下里595・17:00-24:00"},
-      {n:"嘉福",m:"雪鹽蛤蜊涮涮鍋・平良西里149-1 2F"},
-      {n:"豚匠 宮古島邸",m:"島豚×和牛しゃぶしゃぶ・平良西里276-1"},
-      {n:"ぽうちゃたつや",m:"創作和食・平良下里"},
-      {n:"島和食料理店",m:"沖繩家常菜・平良西里570-2・18:00-22:00"}
+      {n:"一魚一会",m:"漁師居酒屋・平良下里595・17:00-24:00",map:"一魚一会 宮古島"},
+      {n:"嘉福",m:"雪鹽蛤蜊涮涮鍋・平良西里149-1 2F・約17:00-23:00，¥6,000-7,999",map:"嘉福 宮古島"},
+      {n:"豚匠 宮古島邸",m:"島豚×和牛しゃぶしゃぶ・平良西里276-1・約17:00-23:00，¥4,000-4,999",map:"豚匠 宮古島邸"},
+      {n:"ぽうちゃたつや",m:"創作和食・平良下里・約18:00-23:00",map:"ぽうちゃたつや 宮古島"},
+      {n:"島和食料理店",m:"沖繩家常菜・平良西里570-2・18:00-22:00",map:"島和食料理店 宮古島"}
     ],warn:"嘉福／豚匠皆為涮涮鍋類型重疊，建議二選一；一魚一会與Day2鰓呼吸皆為海鮮居酒屋，避免重複可挑別的類型"}
   ]
 },
 {
-  id:4,label:"Day 4",date:"10/10（六）",title:"東部・來間島・夕陽海灘",
+  id:4,label:"Day 4",date:"10/10（六）",title:"來間島南部・東平安名岬・Shigira",
   items:[
-    {t:"—",type:"meal",place:"早餐：Kujira Diner／LB CAFE",note:"兩間皆吃過一輪，此天任選",map:"Kujira Diner Miyakojima"},
-    {t:"09:00–10:00",place:"東平安名岬",note:"宮古島最東端斷崖絕景，國家名勝",map:"東平安名岬"},
-    {t:"10:30–11:15",place:"新城海灘",note:"淺灘熱帶魚多，適合浮潛",map:"新城海灘 宮古島"},
-    {t:"11:30–12:15",place:"砂山海灘",note:"沙丘＋拱門海景，IG熱門打卡",map:"砂山ビーチ 宮古島"},
-    {t:"12:30–13:30",type:"meal",place:"炭火麺屋 市",note:"城辺，近東平安名岬，宮古そば＋炭火燒鳥",map:"炭火麺屋市 宮古島"},
-    {t:"14:00–15:00",place:"來間大橋 → 龍宮城展望台",note:"可俯瞰前浜海灘全景",map:"来間大橋"},
-    {t:"15:15–16:00",type:"meal",place:"南西の風 Bakery Cafe",note:"Shigira度假區，8:00–16:00，下午茶時段",map:"南西の風 宮古島 Shigira"},
-    {t:"16:30–18:00",place:"與那覇前浜海灘",note:"東洋第一美灘，戲水看夕陽",map:"与那覇前浜ビーチ"},
-    {t:"18:30",type:"meal",place:"🔥 炭火焼肉 琉宮苑",note:"Shigira度假區，宮古牛＋近海鮮，17:00-22:00",map:"炭火焼肉 琉宮苑"}
+    {t:"08:30–09:00",type:"meal",place:"LB CAFE 早餐",note:"輕食早午餐・8:30–17:00",map:"LB CAFE Miyakojima Hirara Nishizato"},
+    {t:"09:15–10:00",place:"與那覇前濱海灘",note:"東洋第一美灘・全天開放，免費無門票",map:"与那覇前浜ビーチ"},
+    {t:"10:15–10:45",place:"龍宮城觀景台",note:"可俯瞰前浜海灘全景・全天開放，免費無門票",map:"竜宮城展望台 来島"},
+    {t:"11:00–11:45",place:"長間浜 → 章魚公園",note:"峽灣地形海景，紅色章魚裝置藝術・全天開放，免費無門票",map:"長間浜 宮古島"},
+    {t:"12:00–13:00",type:"meal",place:"音楽とごはんのンナヒマイ",note:"蕎麦麺・11:00–15:00",map:"音楽とごはんのンナヒマイ 宮古島"},
+    {t:"13:15–13:45",place:"景點候選（2選1）",note:"兩處都在東平安名崎周邊，彼此相鄰，可視體力/時間彈性安排",cand:[
+      {n:"ムイガー断崖",m:"天然斷崖絕景，人潮較少的秘境視角・全天開放，免費無門票",map:"ムイガー断崖 宮古島"},
+      {n:"インギャーマリンガーデン",m:"天然入江海濱公園，可散策展望台或玩淺水浮潛・全天開放，免費無門票（淋浴需另付費）",map:"イムギャーマリンガーデン"}
+    ]},
+    {t:"14:00–14:45",place:"東平安名岬",note:"宮古島最東端斷崖絕景，國家名勝，岬頂設有可登頂的平安名埼燈台・岬本身全天開放免費，燈台開放約9:30-16:30（假日至17:00），登頂門票約¥200",map:"東平安名岬"},
+    {t:"15:15–16:00",type:"meal",place:"南西の風 Bakery Cafe",note:"Shigira度假區，下午茶時段・約8:00-16:00",map:"南西の風 宮古島 Shigira"},
+    {t:"18:00",type:"meal",place:"🔥 炭火焼肉 琉宮苑",note:"Shigira度假區，宮古牛＋近海鮮，17:00-22:00",map:"炭火焼肉 琉宮苑"},
+    {t:"—",place:"返回 Apartment 11住一宮古島店",note:""}
   ]
 },
 {
   id:5,label:"Day 5",date:"10/11（日）",title:"賦歸",
   items:[
-    {t:"08:00",type:"meal",place:"早餐：市區簡單解決",note:"建議選 Kujira Diner，出餐快"},
-    {t:"09:00",place:"退房",note:"住一宮古島店，10:00前"},
-    {t:"09:15",place:"下地島機場還車",note:"OTS，記得加滿油"},
+    {t:"08:00",type:"meal",place:"起床、收拾",note:"早餐可選市區簡單解決，建議 Kujira Diner（約7:30起），出餐快"},
+    {t:"08:15",place:"退房",note:"住一宮古島店"},
+    {t:"08:30",place:"OTS還車",note:"記得加滿油"},
+    {t:"08:45–09:00",place:"抵達下地島機場",note:"抓09:00前到機場"},
     {t:"10:40–11:00",type:"flight",place:"✈️ JX309 宮古島SHI → 台中RMQ",note:"星宇航空"}
   ]
 }
@@ -510,8 +655,10 @@ const TRANSPORT = {
     {k:"租車公司",v:"OTS Rent-a-Car"},
     {k:"車型",v:"三菱 Delica D:5（8人座）"},
     {k:"取車地點",v:"下地島機場 SHI"},
-    {k:"取車時間",v:"10/7（三）約10:00"},
-    {k:"還車時間",v:"10/11（日）約09:15"}
+    {k:"取車時間",v:"10/7（三）10:30–11:00"},
+    {k:"還車時間",v:"10/11（日）08:30"},
+    {k:"租車費用",v:"¥73,040（5天）／約NT$14,610"},
+    {k:"分攤／人",v:"約NT$2,440"}
   ],
   tips:[
     "國際駕照＋台灣駕照正本務必隨身攜帶，租車與臨檢皆須出示",
@@ -529,20 +676,22 @@ const STAY = {
   checkin:"10/7（三）16:00以後",
   checkout:"10/11（日）10:00以前",
   nights:"共入住4晚",
-  room:"家庭套房 × 1間・6位成人・3張雙人床＋1張單人床・免費WiFi・禁菸",
+  room:"套房 × 1間・6位成人・3張雙人床＋1張單人床・免費WiFi・禁菸",
+  cost:"5晚 NT$23,820（6人分攤，約NT$3,970/人）",
   map:"Apartment Hotel 11 Miyakojima"
 };
 
 const PACKING = [
-  {g:"證件文件",items:["護照（效期6個月以上）","機票、飯店訂單（電子+紙本備份）","國際駕照＋台灣駕照正本（租車必備）","海外旅遊保險保單"]},
-  {g:"水上活動用品",items:["泳裝、快乾衣物","防水袋、水下相機/手機防水殼","泳鏡、水母衣（防曬防螫）","拖鞋/水陸両用鞋"]},
-  {g:"防曬 / 藥品",items:["防曬乳（珊瑚友善配方）、曬後修復","個人常備藥、暈車藥","蚊蟲叮咬藥膏"]},
-  {g:"其他",items:["行動電源、充電線（日本為日規，台灣插頭通用）","輕便雨具","環保購物袋（日本超市袋子須收費）"]}
+  {g:"證件文件",items:["護照（效期6個月以上）","機票、飯店訂單（電子+紙本備份）","先登錄 Visit Japan Web（入境審查/海關可線上申報，加快通關）","台灣駕照正本","國際駕照日文譯本（未持有國際駕照者租車必備替代文件）","海外旅遊保險保單"]},
+  {g:"水上活動用品",items:["泳衣","浮潛裝備（面鏡/呼吸管，或現場租借）","溯溪鞋／水陸両用鞋","大浴巾","防水袋、水下相機/手機防水殼","泳鏡、水母衣（防曬防螫）","暈船藥（水上活動當天建議提前服用）"]},
+  {g:"防曬 / 藥品",items:["防曬用品（乳液/噴霧，建議珊瑚友善配方）、曬後修復","個人常備藥、暈車藥","蚊蟲叮咬藥膏"]},
+  {g:"其他",items:["野餐墊（海灘/公園野餐用）","行動電源、充電線（日本為日規，台灣插頭通用）","輕便雨具","購物袋（日本超市袋子須收費）"]}
 ];
 
 const PRACTICAL = [
   {k:"網路",v:"建議租借 eSIM 或 WiFi 分享器，郊區偶有死角"},
   {k:"換匯",v:"機場匯率較差，建議台灣先換好日圓現金"},
+  {k:"台幣/日幣匯率",v:"出發前可上 Google「台幣 兌換 日幣」或 XE.com 查詢即時匯率",map:"https://www.xe.com/currencyconverter/convert/?Amount=1&From=TWD&To=JPY"},
   {k:"保險",v:"投保海外旅遊平安險，並確認涵蓋潛水/浮潛活動"}
 ];
 
@@ -556,19 +705,19 @@ const BUDGET = [
 ];
 
 /* ============ HELPERS ============ */
-const mapURL = q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+const mapURL = q => q.startsWith("http") ? q : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
 function itemHTML(it){
   const cls = ["item", it.type==="meal"?"meal":"", it.type==="flight"?"flight":""].join(" ").trim();
   let cand = "";
   if(it.cand){
-    cand = `<div class="candbox"><div class="candlabel">候選清單</div>${it.cand.map(c=>`<div class="cand"><div class="candname">${c.n}</div><div class="candmeta">${c.m}</div></div>`).join("")}</div>`;
+    cand = `<div class="candbox"><div class="candlabel">候選清單</div>${it.cand.map(c=>`<div class="cand"><div class="candname"><span class="icon-badge" style="width:20px;height:20px;">${iconFor(c)}</span> ${c.n}</div><div class="candmeta">${c.m}</div>${c.map?`<div class="maprow"><a class="mapbtn" href="${mapURL(c.map)}" target="_blank" rel="noopener">${ICONS.pin}導航</a></div>`:""}</div>`).join("")}</div>`;
   }
   return `<div class="${cls}">
     <div class="dot"></div>
     <div class="card">
       <div class="time">${it.t}</div>
-      <div class="place">${it.place}${it.badge?`<span class="badge">${it.badge}</span>`:""}${it.tag?`<span class="badge">${it.tag}</span>`:""}</div>
+      <div class="place"><span class="icon-badge">${iconFor(it)}</span>${it.place}${it.badge?`<span class="badge">${it.badge}</span>`:""}${it.tag?`<span class="badge">${it.tag}</span>`:""}</div>
       ${it.note?`<div class="note">${it.note}</div>`:""}
       ${it.warn?`<div class="warn">${it.warn}</div>`:""}
       ${it.map?`<div class="maprow"><a class="mapbtn" href="${mapURL(it.map)}" target="_blank" rel="noopener">${ICONS.pin}導航</a></div>`:""}
@@ -617,6 +766,7 @@ function renderTransportView(){
   const el = document.getElementById("view-transport");
   el.innerHTML = `
     <div class="sectitle">✈️ 航班資訊</div>
+    <div class="infocard"><div class="kv"><div class="k">機票（星宇航空）</div><div class="v">NT$16,701／人</div></div></div>
     ${TRANSPORT.flights.map(f=>`
       <div class="flightcard">
         <div class="flabel">${f.label} ・ ${f.date}</div>
@@ -651,6 +801,7 @@ function renderStayView(){
       <div class="kv"><div class="k">退房</div><div class="v">${STAY.checkout}</div></div>
       <div class="kv"><div class="k">天數</div><div class="v">${STAY.nights}</div></div>
       <div class="kv"><div class="k">房型</div><div class="v" style="text-align:left;max-width:62%;">${STAY.room}</div></div>
+      <div class="kv"><div class="k">費用</div><div class="v" style="text-align:left;max-width:62%;">${STAY.cost}</div></div>
       <div class="maprow" style="margin-top:12px;"><a class="mapbtn" href="${mapURL(STAY.map)}" target="_blank" rel="noopener">${ICONS.pin}導航至飯店</a></div>
     </div>
   `;
@@ -674,7 +825,7 @@ function renderPackingView(){
     `).join("")}
     <div class="sectitle">📶 實用資訊</div>
     <div class="infocard">
-      ${PRACTICAL.map(p=>`<div class="kv"><div class="k">${p.k}</div><div class="v" style="text-align:left;max-width:62%;">${p.v}</div></div>`).join("")}
+      ${PRACTICAL.map(p=>`<div class="kv"><div class="k">${p.k}</div><div class="v" style="text-align:left;max-width:62%;">${p.map?`<a href="${p.map}" target="_blank" rel="noopener" style="color:var(--sea-deep);text-decoration:underline;">${p.v}</a>`:p.v}</div></div>`).join("")}
     </div>
   `;
   el.querySelectorAll(".checkitem[data-g]").forEach(node=>{
