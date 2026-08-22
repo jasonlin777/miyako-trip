@@ -62,7 +62,7 @@ body{
 header{
   background:linear-gradient(165deg,var(--ocean-1) 0%,var(--ocean-2) 55%,var(--ocean-3) 100%);
   color:#fff;
-  padding:26px 20px 0;
+  padding:14px 20px 0;
   position:sticky;
   top:0;
   z-index:20;
@@ -86,33 +86,33 @@ header > *{position:relative;z-index:1;padding-left:0;padding-right:0;}
 .headerpad{padding:0 0 18px;}
 .eyebrow{
   font-family:'Roboto Mono',monospace;
-  font-size:11px;
-  letter-spacing:.16em;
+  font-size:9.5px;
+  letter-spacing:.14em;
   text-transform:uppercase;
   color:#FFE4BE;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
 }
-.eyebrow::before{content:"☀";font-size:12px;}
+.eyebrow::before{content:"☀";font-size:11px;}
 h1{
   font-family:'Plus Jakarta Sans','Noto Sans TC',sans-serif;
   font-weight:800;
-  font-size:27px;
-  line-height:1.3;
-  margin-top:8px;
+  font-size:19px;
+  line-height:1.25;
+  margin-top:3px;
   letter-spacing:.01em;
 }
 .subline{
-  font-size:12.5px;
+  font-size:10.5px;
   color:rgba(255,255,255,.82);
-  margin-top:8px;
+  margin-top:4px;
   font-family:'Roboto Mono',monospace;
-  letter-spacing:.03em;
+  letter-spacing:.02em;
 }
 
 /* route map signature element */
-.routewrap{margin-top:18px;}
+.routewrap{margin-top:8px;}
 .routesvg{width:100%;height:auto;display:block;}
 .routesvg .path{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2;stroke-dasharray:3 7;stroke-linecap:round;}
 .routesvg .node{cursor:pointer;}
@@ -123,15 +123,15 @@ h1{
 .routesvg .node:not(.active):hover circle{fill:rgba(255,255,255,.34);}
 
 /* wave divider */
-.wavedivider{display:block;width:auto;height:30px;margin:14px -20px 0;position:relative;z-index:1;}
+.wavedivider{display:block;width:auto;height:18px;margin:6px -20px 0;position:relative;z-index:1;}
 .wavedivider path{fill:var(--sand);}
 
 /* ===== Day pill selector ===== */
 .daypills{
   display:flex;
-  gap:8px;
+  gap:7px;
   overflow-x:auto;
-  padding:14px 20px 16px;
+  padding:9px 20px 9px;
   margin:0 -20px;
   scrollbar-width:none;
   background:var(--sand);
@@ -140,9 +140,9 @@ h1{
 .pill{
   flex:0 0 auto;
   font-family:'Roboto Mono',monospace;
-  font-size:12px;
+  font-size:11px;
   font-weight:600;
-  padding:9px 15px;
+  padding:7px 12px;
   border-radius:999px;
   border:1px solid var(--line);
   background:var(--glass-strong);
@@ -478,11 +478,11 @@ nav.bottomnav{
     <h1>宮古島環島紀行</h1>
     <div class="subline">2026.10.07 — 10.11 ｜ 6人・純自駕 ｜ Delica D:5</div>
     <div class="routewrap">
-      <svg class="routesvg" viewBox="0 0 440 90" id="routeSvg">
-        <path class="path" d="M30,55 C70,15 120,15 150,45 C175,70 210,70 230,45 C255,15 300,15 330,45 C355,68 390,60 410,35"/>
+      <svg class="routesvg" viewBox="0 0 440 58" id="routeSvg">
+        <path class="path" d="M30,33 C70,9 120,9 150,27 C175,42 210,42 230,27 C255,9 300,9 330,27 C355,41 390,36 410,21"/>
       </svg>
     </div>
-    <svg class="wavedivider" viewBox="0 0 480 30" preserveAspectRatio="none"><path d="M0,14 C80,28 160,2 240,14 C320,26 400,2 480,16 L480,30 L0,30 Z"/></svg>
+    <svg class="wavedivider" viewBox="0 0 480 18" preserveAspectRatio="none"><path d="M0,8 C80,17 160,1 240,8 C320,15 400,1 480,9 L480,18 L0,18 Z"/></svg>
     <div class="daypills" id="dayPills"></div>
   </header>
 
@@ -731,13 +731,13 @@ let activeDay = 1;
 
 function renderRouteSvg(){
   const svg = document.getElementById("routeSvg");
-  const coords = [[30,55],[125,25],[220,50],[315,25],[410,35]];
+  const coords = [[30,33],[125,15],[220,30],[315,15],[410,21]];
   const old = svg.querySelectorAll(".node");
   old.forEach(n=>n.remove());
   coords.forEach((c,i)=>{
     const g = document.createElementNS("http://www.w3.org/2000/svg","g");
     g.setAttribute("class","node"+(activeDay===i+1?" active":""));
-    g.innerHTML = `<circle cx="${c[0]}" cy="${c[1]}" r="9"></circle><text x="${c[0]}" y="${c[1]+23}">D${i+1}</text>`;
+    g.innerHTML = `<circle cx="${c[0]}" cy="${c[1]}" r="6.5"></circle><text x="${c[0]}" y="${c[1]+14}">D${i+1}</text>`;
     g.addEventListener("click",()=>{activeDay=i+1;renderAll();document.getElementById("nav-itinerary").click();});
     svg.appendChild(g);
   });
