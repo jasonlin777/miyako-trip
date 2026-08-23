@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#00A896">
-<title>宮古島環島紀行｜2026.10.7-10.11</title>
+<title>宮古島自由行｜2026.10.7-10.11</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -474,9 +474,9 @@ nav.bottomnav{
 <div id="app">
 
   <header>
-    <div class="eyebrow">Miyakojima Island Loop</div>
-    <h1>宮古島環島紀行</h1>
-    <div class="subline">2026.10.07 — 10.11 ｜ 6人・純自駕 ｜ Delica D:5</div>
+    <div class="eyebrow">Miyako Island  Travel</div>
+    <h1>宮古島自由行</h1>
+    <div class="subline">2026.10.07 — 10.11 ｜ 6人・自駕旅遊 ｜ Delica D:5</div>
     <div class="routewrap">
       <svg class="routesvg" viewBox="0 0 440 58" id="routeSvg">
         <path class="path" d="M30,33 C70,9 120,9 150,27 C175,42 210,42 230,27 C255,9 300,9 330,27 C355,41 390,36 410,21"/>
@@ -695,6 +695,14 @@ const PRACTICAL = [
   {k:"保險",v:"投保海外旅遊平安險，並確認涵蓋潛水/浮潛活動"}
 ];
 
+const FIXED_COSTS = [
+  {k:"機票（星宇航空）",v:"NT$16,701",note:"每人"},
+  {k:"住宿（5晚，6人分攤）",v:"NT$3,970",note:"每人"},
+  {k:"租車（5天，6人分攤）",v:"NT$2,440",note:"每人"},
+  {k:"水上活動（八重干瀬＋SUP）",v:"待確認",note:"尚未與業者接洽報價"},
+  {k:"機場接送",v:"待確認",note:"目前行程為自駕取車，如另有安排請提供費用"}
+];
+
 const BUDGET = [
   {day:"Day 1",label:"餐飲＋雜支",val:"NT$900–1,100"},
   {day:"Day 2",label:"餐飲＋購物",val:"NT$700–900"},
@@ -837,7 +845,21 @@ function renderPackingView(){
 function renderBudgetView(){
   const el = document.getElementById("view-budget");
   el.innerHTML = `
-    <div class="sectitle">💰 預算總覽</div>
+    <div class="sectitle">🧾 固定支出（均攤／人）</div>
+    <div class="infocard">
+      ${FIXED_COSTS.map(f=>`
+        <div class="budgetrow">
+          <div><div class="blab">${f.k}</div><div class="bday">${f.note}</div></div>
+          <div class="bval">${f.v}</div>
+        </div>
+      `).join("")}
+      <div class="budgettotal">
+        <div class="blab">已知固定支出小計／人</div>
+        <div class="bval">23,111</div>
+      </div>
+    </div>
+    <div class="note" style="margin-bottom:16px;">水上活動與機場接送費用確定後，會再加進小計。</div>
+    <div class="sectitle">💰 每日花費預算</div>
     <div class="note" style="margin-bottom:12px;">每人抓 NT$20,000（不含機票／住宿／租車／伴手禮）</div>
     <div class="infocard">
       ${BUDGET.map(b=>`
