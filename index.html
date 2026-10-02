@@ -424,13 +424,15 @@ main{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:10px;
   padding:11px 0;
   border-bottom:1px solid rgba(29,42,68,.08);
 }
 .budgetrow:last-child{border-bottom:none;}
+.budgetrow>div:first-child{flex:1 1 auto;min-width:0;}
 .budgetrow .blab{font-size:13.5px;font-weight:600;}
 .budgetrow .bday{font-size:11px;color:var(--text-soft);font-family:'Roboto Mono',monospace;}
-.budgetrow .bval{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--ocean-3);font-size:14px;}
+.budgetrow .bval{font-family:'Roboto Mono',monospace;font-weight:700;color:var(--ocean-3);font-size:14px;white-space:nowrap;flex:0 0 auto;text-align:right;}
 .budgettotal{
   margin-top:8px;
   padding-top:16px;
@@ -703,7 +705,7 @@ const DAYS = [
     {t:"11:10–11:30",place:"補給＋服用暈船藥",note:"順路超商買輕食、防曬、毛巾（若還沒準備）；浮潛前不要吃太飽・易暈船者請自備暈船藥並依說明書服用・業者提醒當天早上請先穿妥泳衣做好準備，現場沒有更衣室",tag:"提醒"},
     {t:"11:35",place:"前往池間島漁港",note:"Groovy Blue集合地點：池間島漁港停車場，我方船隻前方，業者已提供Google地圖連結・車程約25-30分，預留停車＋走到船邊時間",map:"https://maps.app.goo.gl/ppwirtSRWGC5ZACr6",warn:"業者要求12:20前抵達並穿好泳衣在船前集合，已將上午行程提前，抓約45分鐘緩衝"},
     {t:"12:40",place:"🌊 集合：池間島漁港船前",note:"業者回覆重點：12:40集合、13:00出發，須提早約20分鐘穿好泳衣在船前等候・攜帶毛巾、替換衣物；易暈船者自備暈船藥・現場提供飲料（茶飲）；建議另外穿防曬外套／防磨衣（水上防曬衣），兼防曬與擦拭濕身體用・裝備租借免費・若行程取消，業者會透過LINE或官網Email通知",map:"https://maps.app.goo.gl/ppwirtSRWGC5ZACr6",tag:"已確定"},
-    {t:"13:00–16:00",place:"🌊 Groovy Blue 八重干瀬半日浮潛之旅",note:"日本最大級珊瑚礁群，透明宮古藍海水，池間島出航最短航程・¥14,000/人・已線上刷卡付款，換算約NT$17,360/6人",map:"https://www.instagram.com/groovy_blue385/",maplabel:"IG",tag:"已確定"},
+    {t:"13:00–16:00",place:"🌊 Groovy Blue 八重干瀬半日浮潛之旅",note:"日本最大級珊瑚礁群，透明宮古藍海水，池間島出航最短航程・¥14,000/人・已線上刷卡付款，共NT$17,360＋手續費NT$260＝NT$17,620/6人",map:"https://www.instagram.com/groovy_blue385/",maplabel:"IG",tag:"已確定"},
     {t:"16:45–17:30",place:"島の駅みやこ",note:"平良久貝870-1，池間島返回市區路上順遊・16:00上岸後需沖洗換裝、車程約25分，預計16:45抵達・宮古島規模最大伴手禮/鮮食市場，新鮮芒果、雪鹽系列、泡盛、美食街一次購足・夏季9:00-19:00／冬季9:00-18:00，全年無休",map:"島の駅みやこ"},
     {t:"17:45",place:"返回住宿休息／沖澡",note:""},
     {t:"18:45",type:"meal",place:"晚餐候選（3選1）",note:"皆在平良市區同一區塊，不用額外開車・點縮圖可放大看照片／菜單",cand:[
@@ -779,11 +781,11 @@ const PRACTICAL = [
 
 const FIXED_COSTS = [
   {k:"機票（星宇航空）",v:"NT$16,701",note:"每人",n:16701},
-  {k:"住宿（4晚，6人分攤）",v:"NT$3,970",note:"每人",n:3970},
-  {k:"租車（5天，6人分攤）",v:"NT$2,440",note:"每人",n:2440},
-  {k:"水上活動－Lani日出SUP",v:"¥8,000（約NT$1,650）",note:"每人，10/10 AM6:00，已預約",n:1650,act:true},
-  {k:"水上活動－Groovy Blue八重干瀬浮潛",v:"NT$2,893",note:"每人，10/10 PM12:40，已線上刷卡（6人共NT$17,360）",n:2893,act:true},
-  {k:"機場接送",v:"NT$433",note:"每人，來回共NT$2,600（9人座車），6人均分",n:433,act:true}
+  {k:"住宿（4晚，6人分攤）",v:"NT$3,970",note:"每人，10/7~10/11，已預約（NT$23,820）",n:3970},
+  {k:"租車（5天，6人分攤）",v:"NT$2,445",note:"每人，10/7~10/11，已預約 線上付款（尚未扣款 ¥73,040，約NT$14,667，不含手續費）",n:2445},
+  {k:"水上活動－Lani日出SUP",v:"¥8,000（約NT$1,650）",note:"每人，10/10 AM6:00，已預約(現場日幣現金支付)",n:1650,act:true},
+  {k:"水上活動－Groovy Blue八重干瀬浮潛",v:"NT$2,937",note:"每人，10/10 PM12:40，已線上刷卡（6人共NT$17,360＋手續費NT$260＝NT$17,620）",n:2937,act:true},
+  {k:"機場接送（遠達旅遊，6人分攤）",v:"NT$433",note:"每人，台中機場來回共NT$2,600（9人座車）",n:433,act:true}
 ];
 
 const BUDGET = [
